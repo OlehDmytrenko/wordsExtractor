@@ -1,0 +1,25 @@
+{"langConfig" : [
+	{"uk" : "pymorphy2"},
+	{"ru" : "pymorphy2"},
+   	{"en" : "stanza"},
+	{"de" : ""},
+	{"he" : ""},
+	{"zh" : ""},
+	{"kv" : ""},
+	{"tl" : ""},
+	{"bcl" : ""},
+	{"xal" : ""},
+	{"ba" : ""},
+	{"ga" : ""}
+	],
+
+"minDocLength" : "5",
+"maxDocLength" : "200000000",
+
+"nGrams" : [
+	{"1" : "Words"}
+	],
+
+"maxNumNarratives" : "20"
+
+}
