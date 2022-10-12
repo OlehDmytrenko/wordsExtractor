@@ -44,9 +44,9 @@ if __name__ == "__main__":
                         words  = textProcessor.stanza_nlp(document, nlpModels[lang], defaultSWs[lang])    
                     elif (not defaultLangs[lang]):
                         words = textProcessor.pymorphy2_nlp(document, nlpModels['en'], defaultSWs['en'])    
+                    # form array of documents (where each document presented as array of extracted words)
+                    docs.append(words)
                 document = ""
-                # form array of documents (where each document presented as array of extracted words)
-                docs.append(words)
                 
         inputFlow.close()
     
