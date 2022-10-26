@@ -96,11 +96,12 @@ def GTF_vector(docs, vectorWords):
                     GTFs.append(0)
             # add verctor of GTF to dataframe 
             df[str(column)] = GTFs
-            df2 = pd.DataFrame(GTFs, index=[word for (word,freq) in vectorWords], columns=["GTF"]) 
-            df2 = df2.sort_values(by=["GTF"],ascending=False)
-            df2.to_excel(output, sheet_name=str(column))
+            #df2 = pd.DataFrame(GTFs, index=[word for (word,freq) in vectorWords], columns=["GTF"]) 
+            #df2 = df2.sort_values(by=["GTF"],ascending=False)
+            #df2.to_excel(output, sheet_name=str(column))
         
         df.to_excel(output, sheet_name='Matrix')
+        df.to_csv('GTF.csv')
         print (df.to_numpy)
     return
 
@@ -134,4 +135,4 @@ def get_vector_words(docs):
     for doc in docs:
         words += doc
     fdist = FreqDist(word for word in words)
-    return fdist.most_common()
+    return fdist.most_common(100)

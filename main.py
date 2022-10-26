@@ -51,7 +51,7 @@ if __name__ == "__main__":
         inputFlow.close()
     
     # get set of all unique words from all docs
-    setWords = wordsAssessment.get_set_words(docs)
+    #setWords = wordsAssessment.get_set_words(docs)
     
     # get vector of all unique words from all docs
     vectorWords = wordsAssessment.get_vector_words(docs)
