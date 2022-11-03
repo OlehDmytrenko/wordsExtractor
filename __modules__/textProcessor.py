@@ -16,8 +16,11 @@ from __modules__ import defaultModelsLoader, defaultSWsLoader
 def stanza_built_words(sent, NWords, stopWords):
     WordsTags = []
     for word in sent.words:
-        nword = (word.lemma).lower()
-        tag = word.upos
+        try:
+            nword = (word.lemma).lower()
+            tag = word.upos
+        except:
+            continue
         if tag == 'PROPN':
             tag = 'NOUN'
         WordsTags.append((nword,tag))
@@ -37,9 +40,12 @@ def pymorphy2_built_words(sent, NWords, nlpModel, stopWords):
     WordsTags = []
     words = word_tokenize(sent)
     for word in words:
-        nword = (nlpModel.normal_forms(word)[0]).lower()
-        tag = str((nlpModel.parse(word)[0]).tag.POS)
-        if tag == 'NPRO':
+        try:
+            nword = str(nlpModel.normal_forms(word)[0]).lower()
+            tag = str((nlpModel.parse(word)[0]).tag.POS)
+        except:
+            continue
+        if tag == 'PROPN':
             tag = 'NOUN'
         WordsTags.append((nword,tag))
         if (nword not in stopWords) and (tag == 'NOUN'): 

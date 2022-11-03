@@ -14,7 +14,7 @@
 	],
 
 "minDocLength" : "5",
-"maxDocLength" : "200000000",
+"maxDocLength" : "20000",
 
 "nGrams" : [
 	{"1" : "Words"}

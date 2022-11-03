@@ -6,6 +6,7 @@
 """
 import sys, os
 from __modules__ import defaultConfigLoader, defaultModelsLoader, defaultSWsLoader, textProcessor, wordsAssessment
+from __modules__ import similarityMatrix, matrixClustering 
 
 import time
 t0 = time.time()
@@ -56,9 +57,12 @@ if __name__ == "__main__":
     # get vector of all unique words from all docs
     vectorWords = wordsAssessment.get_vector_words(docs)
     
-    wordsAssessment.TFIDF_vector(docs, vectorWords)
-    wordsAssessment.GTF_vector(docs, vectorWords)
+    df = wordsAssessment.TFIDF_vector(docs, vectorWords)
+    #df = wordsAssessment.GTF_vector(docs, vectorWords)
     #termsRanker.tfidf(documents)
-    print ("\nYou are lucky! The program successfully finished!\n")
+    
+    df_euclidian = similarityMatrix.euclidianSimilyrity(df)
+    matrixClustering.KMeansMethod(df_euclidian)
+    
     print (time.time() - t0)
     

@@ -103,7 +103,7 @@ def GTF_vector(docs, vectorWords):
         df.to_excel(output, sheet_name='Matrix')
         df.to_csv('GTF.csv')
         print (df.to_numpy)
-    return
+    return df#.to_numpy()
 
 # get vector of TF-IDF that corresponds to vectorWords for each doc
 def TFIDF_vector(docs, vectorWords):
@@ -122,7 +122,7 @@ def TFIDF_vector(docs, vectorWords):
         # add verctor of TF-IDF to dataframe 
         df[str(column)] = TFIDFs
         df.to_excel('TF-IDF.xlsx')
-    return
+    return df
 
 def get_set_words(docs):
     words = []
@@ -135,4 +135,4 @@ def get_vector_words(docs):
     for doc in docs:
         words += doc
     fdist = FreqDist(word for word in words)
-    return fdist.most_common(100)
+    return fdist.most_common(20)
