@@ -10,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def KMeansMethod(df):
-    print (df.min())
     matrx = df.to_numpy()
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)

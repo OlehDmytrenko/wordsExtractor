@@ -91,7 +91,7 @@ def GTF_vector(docs, vectorWords):
             column += 1
             for (word, freq) in vectorWords:
                 if word in doc:
-                    GTFs.append(freq/norm)
+                    GTFs.append(round(freq/norm, 3))
                 else:
                     GTFs.append(0)
             # add verctor of GTF to dataframe 
@@ -117,7 +117,7 @@ def TFIDF_vector(docs, vectorWords):
         for (word, freq) in vectorWords:
             TF = 1.0*doc.count(word) / len(doc)
             IDF = math.log(1.0 * len(docs) / (sum(1 for doc in docs if word in doc)))
-            TFIDF = TF*IDF
+            TFIDF = round(TF*IDF, 3)
             TFIDFs.append(TFIDF)
         # add verctor of TF-IDF to dataframe 
         df[str(column)] = TFIDFs

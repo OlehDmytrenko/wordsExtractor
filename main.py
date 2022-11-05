@@ -62,7 +62,8 @@ if __name__ == "__main__":
     #termsRanker.tfidf(documents)
     
     df_euclidian = similarityMatrix.euclidianSimilyrity(df)
-    matrixClustering.KMeansMethod(df_euclidian)
+    similarityMatrix.vizualization(df_euclidian)
+    #matrixClustering.KMeansMethod(df_euclidian)
     
     print (time.time() - t0)
     
