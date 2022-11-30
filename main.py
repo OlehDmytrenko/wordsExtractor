@@ -5,7 +5,7 @@
 
 """
 import sys, os
-from __modules__ import defaultConfigLoader, defaultModelsLoader, defaultSWsLoader, textProcessor, wordsAssessment
+from __modules__ import configLoader, modelsLoader, stopwordsLoader, textProcessor, wordsAssessment
 from __modules__ import similarityMatrix, matrixClustering 
 
 import time
@@ -13,13 +13,13 @@ t0 = time.time()
 
 if __name__ == "__main__":
     inputFilePath = sys.argv[1]
-    stdOutput = open("outlog.log", "a")
+    stdOutput = open("outlog.log", "w")
     sys.stderr = stdOutput
     sys.stdout = stdOutput
 
-    defaultLangs = defaultConfigLoader.load_default_languages(os.getcwd())
-    defaultSWs = defaultSWsLoader.load_default_stop_words(defaultLangs)
-    nlpModels = defaultModelsLoader.load_default_models(defaultLangs)
+    defaultLangs = configLoader.load_default_languages(os.getcwd())
+    defaultSWs = stopwordsLoader.load_default_stop_words(defaultLangs)
+    nlpModels = modelsLoader.load_default_models(defaultLangs)
     
     with open(inputFilePath, "r", encoding="utf-8") as inputFlow:
         document = ""
@@ -32,7 +32,7 @@ if __name__ == "__main__":
             if line == '***':
                 document = document[:-4]
                 if document:
-                    document = document[0:defaultConfigLoader.default_int_value(os.getcwd(), 'maxDocLength')].lower()  
+                    document = document[0:configLoader.int_value(os.getcwd(), 'maxDocLength')].lower()  
                     lang = textProcessor.lang_detect(document, defaultLangs, nlpModels, defaultSWs)
                     # check if model for lang exist (if NOT then skip this document and CONTINUE)
                     if (not defaultLangs[lang]):
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     vectorWords = wordsAssessment.get_vector_words(docs)
     
     df = wordsAssessment.TFIDF_vector(docs, vectorWords)
-    #df = wordsAssessment.GTF_vector(docs, vectorWords)
+    df = wordsAssessment.GTF_vector(docs, vectorWords)
     #termsRanker.tfidf(documents)
     
     df_euclidian = similarityMatrix.euclidianSimilyrity(df)
